@@ -13,8 +13,8 @@
 			var fields = targetClass.GetType().GetFields();
 			var fieldsWithTheSameType = fields.Where(field => field.FieldType == typeof(T));
 			var fieldsSatisfyingTheFunc = fieldsWithTheSameType.Where(x => satisfactionFunc((T)x.GetValue(targetClass)));
-
-			return fieldsSatisfyingTheFunc.First(field => ReferenceEquals((T)field.GetValue(targetClass), argumentFunc()));
+			
+			return fieldsSatisfyingTheFunc.First(field => Equals((T)field.GetValue(targetClass), argumentFunc()));
 		}
 	}
 }

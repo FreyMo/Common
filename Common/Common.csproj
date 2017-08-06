@@ -37,8 +37,8 @@
     <Compile Include="ArgumentMust\ArgumentFuncExtensions.cs" />
     <Compile Include="ArgumentMust\ArgumentMust.cs" />
     <Compile Include="ArgumentMust\InternalArgumentMust.cs" />
-    <Compile Include="ArgumentMust\FailedToEnsureException.cs" />
     <Compile Include="Attributes\DescriptionKeyAttribute.cs" />
+    <Compile Include="Dispose\DisposableBase.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\ComparableExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />

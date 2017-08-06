@@ -38,9 +38,27 @@
 		}
 
 		[DebuggerHidden]
+		public static void BeLess<T>(Func<T> argumentFunc, T upperLimit) where T : struct, IComparable
+		{
+			InternalArgumentMust.BeLess(argumentFunc, upperLimit);
+		}
+
+		[DebuggerHidden]
+		public static void BeLessOrEqual<T>(Func<T> argumentFunc, T upperLimit) where T : struct, IComparable
+		{
+			InternalArgumentMust.BeLessOrEqual(argumentFunc, upperLimit);
+		}
+
+		[DebuggerHidden]
 		public static void BeEnum(Func<Type> argumentFunc)
 		{
 			InternalArgumentMust.BeEnum(argumentFunc);
+		}
+		
+		[DebuggerHidden]
+		public static void NotBeNullOrWhitespace(Func<string> argumentFunc)
+		{
+			InternalArgumentMust.NotBeNullOrWhitespace(argumentFunc);
 		}
 	}
 }
