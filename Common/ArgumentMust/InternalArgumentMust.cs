@@ -28,7 +28,7 @@
 		}
 
 		[DebuggerHidden]
-		public static void BeGreater<T>(Func<T> argumentFunc, T lowerLimit) where T : struct, IComparable
+		public static void BeGreater<T>(Func<T> argumentFunc, T lowerLimit) where T : IComparable
 		{
 			if (argumentFunc().IsLessOrEqual(lowerLimit))
 			{
@@ -38,7 +38,7 @@
 		}
 
 		[DebuggerHidden]
-		public static void BeGreaterOrEqual<T>(Func<T> argumentFunc, T lowerLimit) where T : struct, IComparable
+		public static void BeGreaterOrEqual<T>(Func<T> argumentFunc, T lowerLimit) where T : IComparable
 		{
 			if (argumentFunc().IsLessThan(lowerLimit))
 			{
@@ -48,7 +48,7 @@
 		}
 		
 		[DebuggerHidden]
-		public static void BeLess<T>(Func<T> argumentFunc, T upperLimit) where T : struct, IComparable
+		public static void BeLess<T>(Func<T> argumentFunc, T upperLimit) where T : IComparable
 		{
 			if (argumentFunc().IsGreaterOrEqual(upperLimit))
 			{
@@ -58,7 +58,7 @@
 		}
 
 		[DebuggerHidden]
-		public static void BeLessOrEqual<T>(Func<T> argumentFunc, T upperLimit) where T : struct, IComparable
+		public static void BeLessOrEqual<T>(Func<T> argumentFunc, T upperLimit) where T : IComparable
 		{
 			if (argumentFunc().IsGreaterThan(upperLimit))
 			{

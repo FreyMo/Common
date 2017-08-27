@@ -35,16 +35,14 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConcreteMessenger\ConcreteMessenger.cs" />
-    <Compile Include="ConcreteMessenger\IConcreteMessenger.cs" />
     <Compile Include="Messenger\Messenger.cs" />
     <Compile Include="Messenger\IMessenger.cs" />
     <Compile Include="Messenger\ISubscriber.cs" />
     <Compile Include="Messenger\Handlers.cs" />
     <Compile Include="Messenger\HandlerDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MessageAggregator\MessageAggregator.cs" />
-    <Compile Include="MessageAggregator\IMessageAggregator.cs" />
+    <Compile Include="DisposableMessenger\DisposableMessenger.cs" />
+    <Compile Include="DisposableMessenger\IDisposableMessenger.cs" />
     <Compile Include="IMessage.cs" />
   </ItemGroup>
   <ItemGroup>

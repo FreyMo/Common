@@ -1,8 +1,8 @@
-﻿namespace Messenger.MessageAggregator
+﻿namespace Messenger.DisposableMessenger
 {
 	using System;
 
-	public interface IMessageAggregator
+	public interface IDisposableMessenger : IDisposable
 	{
 		void Send<TMessage>(TMessage message) where TMessage : class, IMessage;
 

@@ -26,25 +26,25 @@
 		}
 
 		[DebuggerHidden]
-		public static void BeGreater<T>(Func<T> argumentFunc, T lowerLimit) where T : struct, IComparable
+		public static void BeGreater<T>(Func<T> argumentFunc, T lowerLimit) where T : IComparable
 		{
 			InternalArgumentMust.BeGreater(argumentFunc, lowerLimit);
 		}
 
 		[DebuggerHidden]
-		public static void BeGreaterOrEqual<T>(Func<T> argumentFunc, T lowerLimit) where T : struct, IComparable
+		public static void BeGreaterOrEqual<T>(Func<T> argumentFunc, T lowerLimit) where T : IComparable
 		{
 			InternalArgumentMust.BeGreaterOrEqual(argumentFunc, lowerLimit);
 		}
 
 		[DebuggerHidden]
-		public static void BeLess<T>(Func<T> argumentFunc, T upperLimit) where T : struct, IComparable
+		public static void BeLess<T>(Func<T> argumentFunc, T upperLimit) where T : IComparable
 		{
 			InternalArgumentMust.BeLess(argumentFunc, upperLimit);
 		}
 
 		[DebuggerHidden]
-		public static void BeLessOrEqual<T>(Func<T> argumentFunc, T upperLimit) where T : struct, IComparable
+		public static void BeLessOrEqual<T>(Func<T> argumentFunc, T upperLimit) where T : IComparable
 		{
 			InternalArgumentMust.BeLessOrEqual(argumentFunc, upperLimit);
 		}
