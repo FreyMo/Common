@@ -26,6 +26,14 @@
 		}
 
 		[DebuggerHidden]
+		public static void NotContainNull<T>(Func<IEnumerable<T>> argumentFunc)
+		{
+			ArgumentMust.NotBeNull(argumentFunc);
+
+			InternalArgumentMust.NotContainNull(argumentFunc);
+		}
+
+		[DebuggerHidden]
 		public static void BeGreater<T>(Func<T> argumentFunc, T lowerLimit) where T : IComparable
 		{
 			InternalArgumentMust.BeGreater(argumentFunc, lowerLimit);
@@ -54,7 +62,19 @@
 		{
 			InternalArgumentMust.BeEnum(argumentFunc);
 		}
-		
+
+		[DebuggerHidden]
+		public static void BeOfType<T>(Func<object> argumentFunc)
+		{
+			InternalArgumentMust.BeOfType<T>(argumentFunc);
+		}
+
+		[DebuggerHidden]
+		public static void InheritFrom<T>(Func<Type> argumentFunc)
+		{
+			InternalArgumentMust.InheritFrom<T>(argumentFunc);
+		}
+
 		[DebuggerHidden]
 		public static void NotBeNullOrWhitespace(Func<string> argumentFunc)
 		{

@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,15 +36,17 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Messenger\CachedMessenger.cs" />
+    <Compile Include="Messenger\ICachedMessenger.cs" />
+    <Compile Include="Messenger\MessageRepository.cs" />
     <Compile Include="Messenger\Messenger.cs" />
     <Compile Include="Messenger\IMessenger.cs" />
-    <Compile Include="Messenger\ISubscriber.cs" />
+    <Compile Include="Messenger\ISubscriberTo.cs" />
     <Compile Include="Messenger\Handlers.cs" />
     <Compile Include="Messenger\HandlerDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DisposableMessenger\DisposableMessenger.cs" />
     <Compile Include="DisposableMessenger\IDisposableMessenger.cs" />
-    <Compile Include="IMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

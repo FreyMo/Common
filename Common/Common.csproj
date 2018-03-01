@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,14 +39,77 @@
     <Compile Include="ArgumentMust\ArgumentMust.cs" />
     <Compile Include="ArgumentMust\InternalArgumentMust.cs" />
     <Compile Include="Attributes\DescriptionKeyAttribute.cs" />
+    <Compile Include="Chronometry\Measure.cs" />
     <Compile Include="Dispose\DisposableBase.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\ComparableExtensions.cs" />
+    <Compile Include="Extensions\DoubleExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\GenericExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\IntegerExtensions.cs" />
-    <Compile Include="Notification\BindableBase.cs" />
+    <Compile Include="Notification\Bindable.cs" />
     <Compile Include="NullReference\NullReference.cs" />
+    <Compile Include="PhysicalQuantities\AreaQuantity\Area.cs" />
+    <Compile Include="PhysicalQuantities\AreaQuantity\Extensions\DoubleExtensions.cs" />
+    <Compile Include="PhysicalQuantities\AreaQuantity\Extensions\IntegerExtensions.cs" />
+    <Compile Include="PhysicalQuantities\AreaQuantity\SquareCentiMeter.cs" />
+    <Compile Include="PhysicalQuantities\AreaQuantity\SquareMeter.cs" />
+    <Compile Include="PhysicalQuantities\AreaQuantity\SquareMilliMeter.cs" />
+    <Compile Include="PhysicalQuantities\Definitions\BaseUnit.cs" />
+    <Compile Include="PhysicalQuantities\Definitions\IPhysicalQuantity.cs" />
+    <Compile Include="PhysicalQuantities\Definitions\IPhysicalQuantityBase.cs" />
+    <Compile Include="PhysicalQuantities\Definitions\IUnitBase.cs" />
+    <Compile Include="PhysicalQuantities\Definitions\PhysicalQuantity.cs" />
+    <Compile Include="PhysicalQuantities\Definitions\Unit.cs" />
+    <Compile Include="PhysicalQuantities\EnergyQuantity\Energy.cs" />
+    <Compile Include="PhysicalQuantities\EnergyQuantity\Extensions\DoubleExtensions.cs" />
+    <Compile Include="PhysicalQuantities\EnergyQuantity\Extensions\IntegerExtensions.cs" />
+    <Compile Include="PhysicalQuantities\EnergyQuantity\Joule.cs" />
+    <Compile Include="PhysicalQuantities\EnergyQuantity\MilliJoule.cs" />
+    <Compile Include="PhysicalQuantities\FrequencyQuantity\Extensions\DoubleExtensions.cs" />
+    <Compile Include="PhysicalQuantities\FrequencyQuantity\Extensions\IntegerExtensions.cs" />
+    <Compile Include="PhysicalQuantities\FrequencyQuantity\Frequency.cs" />
+    <Compile Include="PhysicalQuantities\FrequencyQuantity\Hertz.cs" />
+    <Compile Include="PhysicalQuantities\FrequencyQuantity\KiloHertz.cs" />
+    <Compile Include="PhysicalQuantities\FrequencyQuantity\MegaHertz.cs" />
+    <Compile Include="PhysicalQuantities\IntensityQuantity\Extensions\DoubleExtensions.cs" />
+    <Compile Include="PhysicalQuantities\IntensityQuantity\Extensions\IntegerExtensions.cs" />
+    <Compile Include="PhysicalQuantities\IntensityQuantity\Intensity.cs" />
+    <Compile Include="PhysicalQuantities\IntensityQuantity\WattPerSquareCentimeter.cs" />
+    <Compile Include="PhysicalQuantities\IntensityQuantity\WattPerSquareMeter.cs" />
+    <Compile Include="PhysicalQuantities\LengthQuantity\Extensions\DoubleExtensions.cs" />
+    <Compile Include="PhysicalQuantities\LengthQuantity\Extensions\IntegerExtensions.cs" />
+    <Compile Include="PhysicalQuantities\LengthQuantity\Inch.cs" />
+    <Compile Include="PhysicalQuantities\LengthQuantity\Length.cs" />
+    <Compile Include="PhysicalQuantities\LengthQuantity\Meter.cs" />
+    <Compile Include="PhysicalQuantities\LengthQuantity\MicroMeter.cs" />
+    <Compile Include="PhysicalQuantities\LengthQuantity\MilliMeter.cs" />
+    <Compile Include="PhysicalQuantities\LengthQuantity\NanoMeter.cs" />
+    <Compile Include="PhysicalQuantities\PowerQuantity\Extensions\DoubleExtensions.cs" />
+    <Compile Include="PhysicalQuantities\PowerQuantity\Extensions\IntegerExtensions.cs" />
+    <Compile Include="PhysicalQuantities\PowerQuantity\Power.cs" />
+    <Compile Include="PhysicalQuantities\PowerQuantity\Watt.cs" />
+    <Compile Include="PhysicalQuantities\RatioQuantity\Extensions\DoubleExtensions.cs" />
+    <Compile Include="PhysicalQuantities\RatioQuantity\Extensions\IntegerExtensions.cs" />
+    <Compile Include="PhysicalQuantities\RatioQuantity\PartsPerMillion.cs" />
+    <Compile Include="PhysicalQuantities\RatioQuantity\Percent.cs" />
+    <Compile Include="PhysicalQuantities\RatioQuantity\Permil.cs" />
+    <Compile Include="PhysicalQuantities\RatioQuantity\Ratio.cs" />
+    <Compile Include="PhysicalQuantities\RatioQuantity\Whole.cs" />
+    <Compile Include="PhysicalQuantities\TimeQuantity\Extensions\DoubleExtensions.cs" />
+    <Compile Include="PhysicalQuantities\TimeQuantity\Extensions\IntegerExtensions.cs" />
+    <Compile Include="PhysicalQuantities\TimeQuantity\MilliSecond.cs" />
+    <Compile Include="PhysicalQuantities\TimeQuantity\NanoSecond.cs" />
+    <Compile Include="PhysicalQuantities\TimeQuantity\PicoSecond.cs" />
+    <Compile Include="PhysicalQuantities\TimeQuantity\Second.cs" />
+    <Compile Include="PhysicalQuantities\TimeQuantity\Time.cs" />
+    <Compile Include="PhysicalQuantities\VelocityQuantity\Extensions\DoubleExtensions.cs" />
+    <Compile Include="PhysicalQuantities\VelocityQuantity\Extensions\IntegerExtensions.cs" />
+    <Compile Include="PhysicalQuantities\VelocityQuantity\MillimeterPerSecond.cs" />
+    <Compile Include="PhysicalQuantities\VelocityQuantity\KilometerPerHour.cs" />
+    <Compile Include="PhysicalQuantities\VelocityQuantity\MeterPerSecond.cs" />
+    <Compile Include="PhysicalQuantities\VelocityQuantity\Velocity.cs" />
     <Compile Include="Predicates\ComparablePredicates.cs" />
     <Compile Include="Predicates\EnumerablePredicates.cs" />
     <Compile Include="Predicates\GenericTypePredicates.cs" />

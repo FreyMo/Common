@@ -15,5 +15,10 @@
 		{
 			return !sequence.Any();
 		}
+
+		public static bool ContainsNull<T>(this IEnumerable<T> sequence)
+		{
+			return sequence.Any(item => item.Equals(null));
+		}
 	}
 }

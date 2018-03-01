@@ -4,24 +4,14 @@
 	using System.Threading.Tasks;
 	using Common.Notification;
 
-	public abstract class AsyncCommandBase : BindableBase, IAsyncCommand
+	public abstract class AsyncCommandBase : Bindable, IAsyncCommand
 	{
-		private bool _isRunning;
-
 		public event EventHandler CanExecuteChanged;
 
 		public bool IsRunning
 		{
-			get => _isRunning;
-
-			private set
-			{
-				if (_isRunning != value)
-				{
-					_isRunning = value;
-					OnPropertyChanged();
-				}
-			}
+			get => Get<bool>();
+			private set => Set(value);
 		}
 
 		public async void Execute(object parameter)

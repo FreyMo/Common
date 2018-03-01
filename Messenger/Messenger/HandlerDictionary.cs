@@ -10,55 +10,55 @@
 	{
 		private readonly object _thisLock = new object();
 
-		public void AddHandler<TMessage>(ISubscriber<TMessage> subscriber) where TMessage : class, IMessage
+		public void AddHandler<TMessage>(ISubscriberTo<TMessage> subscriberTo) where TMessage : class
 		{
-			ArgumentMust.NotBeNull(() => subscriber);
+			ArgumentMust.NotBeNull(() => subscriberTo);
 
 			lock (_thisLock)
 			{
-				AddHandlerPrivate(subscriber);
+				AddHandlerPrivate(subscriberTo);
 			}
 		}
 
-		public void RemoveHandler<TMessage>(ISubscriber<TMessage> subscriber) where TMessage : class, IMessage
+		public void RemoveHandler<TMessage>(ISubscriberTo<TMessage> subscriberTo) where TMessage : class
 		{
-			ArgumentMust.NotBeNull(() => subscriber);
+			ArgumentMust.NotBeNull(() => subscriberTo);
 
 			lock (_thisLock)
 			{
-				RemoveHandlerPrivate(subscriber);
+				RemoveHandlerPrivate(subscriberTo);
 			}
 		}
 		
 		public void InvalidateHandlers()
 		{
-			var deadReferences = this.SelectMany(kvp => kvp.Value.Where(wr => !wr.IsAlive));
+			var deadReferences = this.SelectMany(kvp => kvp.Value.Where(wr => !wr.IsAlive)).ToList();
 
 			deadReferences.ForEach(Delete);
 		}
 
-		private void AddHandlerPrivate<TMessage>(ISubscriber<TMessage> subscriber) where TMessage : class, IMessage
+		private void AddHandlerPrivate<TMessage>(ISubscriberTo<TMessage> subscriberTo) where TMessage : class
 		{
 			if (ContainsKey(typeof(TMessage)))
 			{
-				if (this[typeof(TMessage)].All(wr => wr.Target.As<ISubscriber<TMessage>>() != subscriber))
+				if (this[typeof(TMessage)].All(wr => wr.Target.As<ISubscriberTo<TMessage>>() != subscriberTo))
 				{
-					this[typeof(TMessage)].Add(new WeakReference(subscriber));
+					this[typeof(TMessage)].Add(new WeakReference(subscriberTo));
 				}
 			}
 			else
 			{
-				Add(typeof(TMessage), new Handlers(new WeakReference(subscriber)));
+				Add(typeof(TMessage), new Handlers(new WeakReference(subscriberTo)));
 			}
 
 			InvalidateHandlers();
 		}
 
-		private void RemoveHandlerPrivate<TMessage>(ISubscriber<TMessage> subscriber) where TMessage : class, IMessage
+		private void RemoveHandlerPrivate<TMessage>(ISubscriberTo<TMessage> subscriberTo) where TMessage : class
 		{
 			if (ContainsKey(typeof(TMessage)))
 			{
-				this[typeof(TMessage)].RemoveAll(wr => wr.Target.As<ISubscriber<TMessage>>() == subscriber);
+				this[typeof(TMessage)].RemoveAll(wr => wr.Target.As<ISubscriberTo<TMessage>>() == subscriberTo);
 			}
 
 			InvalidateHandlers();

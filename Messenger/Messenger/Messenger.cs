@@ -1,6 +1,7 @@
 ﻿namespace Messenger.Messenger
 {
 	using System;
+	using System.Linq;
 	using System.Threading;
 	using Common.ArgumentMust;
 	using Common.Extensions;
@@ -16,45 +17,46 @@
 			_synchronizationContext = synchonizationContext;
 		}
 
-		public void Send<TMessage>(TMessage message) where TMessage : class, IMessage
+		public virtual void Send<TMessage>(TMessage message) where TMessage : class
 		{
 			ArgumentMust.NotBeNull(() => message);
 
 			PublishMessage((x, y) => _synchronizationContext.Send(x, y), message);
 		}
 
-		public void Post<TMessage>(TMessage message) where TMessage : class, IMessage
+		public virtual void Post<TMessage>(TMessage message) where TMessage : class
 		{
 			ArgumentMust.NotBeNull(() => message);
 
 			PublishMessage((x, y) => _synchronizationContext.Post(x, y), message);
 		}
 
-		public void SubscribeTo<TMessage>(ISubscriber<TMessage> subscriber) where TMessage : class, IMessage
+		public void SubscribeTo<TMessage>(ISubscriberTo<TMessage> subscriberTo) where TMessage : class
 		{
-			ArgumentMust.NotBeNull(() => subscriber);
+			ArgumentMust.NotBeNull(() => subscriberTo);
 
-			_handlers.AddHandler(subscriber);
+			_handlers.AddHandler(subscriberTo);
 		}
 
-		public void UnsubscribeFrom<TMessage>(ISubscriber<TMessage> subscriber) where TMessage : class, IMessage
+		public void UnsubscribeFrom<TMessage>(ISubscriberTo<TMessage> subscriberTo) where TMessage : class
 		{
-			ArgumentMust.NotBeNull(() => subscriber);
+			ArgumentMust.NotBeNull(() => subscriberTo);
 
-			_handlers.RemoveHandler(subscriber);
+			_handlers.RemoveHandler(subscriberTo);
 		}
 
-		private void DispatchAction<TMessage>(TMessage message) where TMessage : class, IMessage
+		private void DispatchAction<TMessage>(TMessage message) where TMessage : class
 		{
 			if (_handlers.ContainsKey(typeof(TMessage)))
 			{
 				_handlers.InvalidateHandlers();
-				_handlers[typeof(TMessage)].ForEach(wr => wr.Target.As<ISubscriber<TMessage>>()?.OnMessageReceived(message));
+				// _handlers[typeof(TMessage)].ForEach(wr => wr.Target.As<ISubscriberTo<TMessage>>()?.OnMessageReceived(message)); <-- as it was before, there was an exception...
+				_handlers[typeof(TMessage)].Where(x => x.IsAlive).ToList().ForEach(wr => wr.Target.As<ISubscriberTo<TMessage>>()?.OnMessageReceived(message));
 			}
 		}
 
 		private void PublishMessage<TMessage>(Action<SendOrPostCallback, object> sendOrPostAction, TMessage message)
-			where TMessage : class, IMessage
+			where TMessage : class
 		{
 			if (_synchronizationContext != null)
 			{

@@ -1,6 +1,7 @@
 ﻿namespace Common.Extensions
 {
 	using System;
+	using System.Linq;
 	using ArgumentMust;
 
 	public static class ObjectExtensions
@@ -38,6 +39,16 @@
 			{
 				action(obj.As<T>());
 			}
+		}
+
+		public static bool CheckForValues(this object source, params object[] expectedValues)
+		{
+			if (expectedValues == null)
+			{
+				return source == null;
+			}
+
+			return expectedValues.Any(item => expectedValues.Any(value => item.EqualityEquals(source)));
 		}
 	}
 }

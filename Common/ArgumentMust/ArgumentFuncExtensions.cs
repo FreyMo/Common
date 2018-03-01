@@ -1,11 +1,13 @@
 ﻿namespace Common.ArgumentMust
 {
 	using System;
+	using System.Diagnostics;
 	using System.Linq;
 	using System.Reflection;
 
 	internal static class ArgumentFuncExtensions
 	{
+		[DebuggerHidden]
 		public static FieldInfo GetParameter<T>(this Func<T> argumentFunc, Func<T, bool> satisfactionFunc)
 		{
 			var targetClass = argumentFunc.Target;

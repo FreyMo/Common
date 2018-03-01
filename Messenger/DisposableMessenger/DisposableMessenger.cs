@@ -16,21 +16,21 @@
 
 		private readonly object _lockObject = new object();
 
-		public void Send<TMessage>(TMessage message) where TMessage : class, IMessage
+		public void Send<TMessage>(TMessage message) where TMessage : class
 		{
 			ArgumentMust.NotBeNull(() => message);
 
 			PublishMessage((x, y) => _synchronizationContext.Send(x, y), message);
 		}
 
-		public void Post<TMessage>(TMessage message) where TMessage : class, IMessage
+		public void Post<TMessage>(TMessage message) where TMessage : class
 		{
 			ArgumentMust.NotBeNull(() => message);
 
 			PublishMessage((x, y) => _synchronizationContext.Post(x, y), message);
 		}
 
-		public void SubscribeTo<TMessage>(Action<TMessage> messageHandler) where TMessage : class, IMessage
+		public void SubscribeTo<TMessage>(Action<TMessage> messageHandler) where TMessage : class
 		{
 			ArgumentMust.NotBeNull(() => messageHandler);
 
@@ -40,7 +40,7 @@
 			}
 		}
 
-		public void UnsubscribeFrom<TMessage>(Action<TMessage> messageHandler) where TMessage : class, IMessage
+		public void UnsubscribeFrom<TMessage>(Action<TMessage> messageHandler) where TMessage : class
 		{
 			ArgumentMust.NotBeNull(() => messageHandler);
 
